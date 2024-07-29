@@ -1,89 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Vuelos</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("#formularioVuelo").submit(function(event) {
-        event.preventDefault();
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Registro de Vuelos</title>  
+  <link rel="stylesheet" href="styles.css">  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+  <script src="script.js" defer></script>  
+</head>  
+<body>  
+  <h1>Registro de Vuelos</h1>  
+  <form id="formularioVuelo" method="post">  
+    <label for="origenVuelo">Origen:</label>  
+    <input type="text" id="origenVuelo" name="origen" required aria-required="true"><br>  
 
-        // Validación básica de datos
-        if ($("#origenVuelo").val() === "") {
-          alert("Debe ingresar el origen del vuelo.");
-          return false;
-        }
+    <label for="destinoVuelo">Destino:</label>  
+    <input type="text" id="destinoVuelo" name="destino" required aria-required="true"><br>  
 
-        if ($("#destinoVuelo").val() === "") {
-          alert("Debe ingresar el destino del vuelo.");
-          return false;
-        }
+    <label for="fechaVuelo">Fecha:</label>  
+    <input type="date" id="fechaVuelo" name="fecha" required aria-required="true"><br>  
 
-        if ($("#fechaVuelo").val() === "") {
-          alert("Debe ingresar la fecha del vuelo.");
-          return false;
-        }
+    <label for="plazasVuelo">Plazas disponibles:</label>  
+    <input type="number" id="plazasVuelo" name="plazas" required aria-required="true" min="1"><br>  
 
-        if ($("#plazasVuelo").val() === "" || isNaN($("#plazasVuelo").val())) {
-          alert("Debe ingresar un número válido de plazas disponibles.");
-          return false;
-        }
+    <label for="precioVuelo">Precio:</label>  
+    <input type="number" step="0.01" id="precioVuelo" name="precio" required aria-required="true" min="0"><br>  
 
-        if ($("#precioVuelo").val() === "" || isNaN($("#precioVuelo").val())) {
-          alert("Debe ingresar un precio válido para el vuelo.");
-          return false;
-        }
-
-        // Enviar datos al script PHP
-        var datos = {
-          origen: $("#origenVuelo").val(),
-          destino: $("#destinoVuelo").val(),
-          fecha: $("#fechaVuelo").val(),
-          plazas: $("#plazasVuelo").val(),
-          precio: $("#precioVuelo").val()
-        };
-
-        $.ajax({
-          type: "POST",
-          url: "registrar_vuelo.php",
-          data: datos,
-          success: function(respuesta) {
-            if (respuesta === "OK") {
-              alert("Vuelo registrado exitosamente.");
-              $("#formularioVuelo")[0].reset(); // Limpiar formulario
-            } else {
-              alert("Error al registrar el vuelo: " + respuesta);
-            }
-          },
-          error: function() {
-            alert("Error de comunicación con el servidor.");
-          }
-        });
-      });
-    });
-  </script>
-</head>
-<body>
-  <h1>Registro de Vuelos</h1>
-  <form id="formularioVuelo" method="post">
-    <label for="origenVuelo">Origen:</label>
-    <input type="text" id="origenVuelo" name="origen" required><br>
-
-    <label for="destinoVuelo">Destino:</label>
-    <input type="text" id="destinoVuelo" name="destino" required><br>
-
-    <label for="fechaVuelo">Fecha:</label>
-    <input type="date" id="fechaVuelo" name="fecha" required><br>
-
-    <label for="plazasVuelo">Plazas Disponibles:</label>
-    <input type="number" id="plazasVuelo" name="plazas" required><br>
-
-    <label for="precioVuelo">Precio:</label>
-    <input type="number" step="0.01" id="precioVuelo" name="precio" required><br>
-
-    <input type="submit" value="Registrar Vuelo">
-  </form>
-</body>
-</html>
+    <input type="submit" value="Registrar vuelo">  
+    <div id="feedback" style="display:none;">Enviando...</div>  
+  </form>  
+</body>  
+</html> 
