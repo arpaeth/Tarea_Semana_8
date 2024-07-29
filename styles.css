@@ -1,0 +1,32 @@
+/* Añade un estilo básico para mejorar la presentación y la accesibilidad */  
+body {  
+    font-family: Arial, sans-serif;  
+    margin: 20px;  
+  }  
+  
+  label {  
+    display: block;  
+    margin-top: 10px;  
+  }  
+  
+  input[type="text"],  
+  input[type="date"],  
+  input[type="number"] {  
+    width: 100%;  
+    padding: 8px;  
+    margin-top: 5px;  
+  }  
+  
+  input[type="submit"] {  
+    margin-top: 10px;  
+    padding: 10px 20px;  
+    background-color: #4CAF50;  
+    color: white;  
+    border: none;  
+    cursor: pointer;  
+  }  
+  
+  #feedback {  
+    margin-top: 10px;  
+    color: blue;  
+  }
